@@ -158,12 +158,46 @@ public class DobbeltLenketListe<T> implements Liste<T>
   @Override
   public String toString()
   {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+    if(antall == 0)
+      return "[]";
+
+    StringBuilder strBuilder = new StringBuilder("[");
+    Node<T> currentNode = hode.neste;
+
+    strBuilder.append(currentNode.verdi.toString());
+    currentNode = currentNode.neste;
+
+    for(int i = 1; i < antall; i++){
+      strBuilder.append(", " + currentNode.verdi.toString());
+
+      currentNode = currentNode.neste;
+    }
+
+    strBuilder.append("]");
+
+    return strBuilder.toString();
   }
 
   public String omvendtString()
   {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+    if(antall == 0)
+      return "[]";
+
+    StringBuilder strBuilder = new StringBuilder("[");
+    Node<T> currentNode = hale.forrige;
+
+    strBuilder.append(currentNode.verdi.toString());
+    currentNode = currentNode.forrige;
+
+    for(int i = 1; i < antall; i++){
+      strBuilder.append(", " + currentNode.verdi.toString());
+
+      currentNode = currentNode.forrige;
+    }
+
+    strBuilder.append("]");
+
+    return strBuilder.toString();
   }
 
   public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)

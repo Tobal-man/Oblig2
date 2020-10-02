@@ -4,10 +4,9 @@ public class Main {
 
 
         Liste<String> liste = new DobbeltLenketListe<>();
-        /*
         System. out .println(liste. antall () + " " + liste. tom ());
 
-
+        /*
         String[] s = { "Ole" , null , "Per" , "Kari ", null };
         Liste<String> liste = new DobbeltLenketListe<>(s);
         System. out .println(liste. antall () + " " + liste. tom ());

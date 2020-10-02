@@ -47,9 +47,25 @@ public class DobbeltLenketListe<T> implements Liste<T>
   }
 
   // konstruktør
-  public DobbeltLenketListe(T[] a)
-  {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+  public DobbeltLenketListe(T[] a) {
+    Objects.requireNonNull(a, "Tabellen a er null!");
+
+    Node<T> node = null;
+
+    for (T obj : a) {
+      if (obj != null) {
+        node = new Node<T>(obj, node, null);
+
+        if (node.forrige != null)
+          node.forrige.neste = node;
+        else
+          hode = node;
+
+        antall++;
+      }
+    }
+
+    hale = node;
   }
 
   // subliste

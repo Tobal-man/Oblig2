@@ -1,6 +1,3 @@
-
-/////////// DobbeltLenketListe ////////////////////////////////////
-
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -52,35 +49,9 @@ public class DobbeltLenketListe<T> implements Liste<T>
   // konstruktør
   public DobbeltLenketListe(T[] a)
   {
-    if(a == null)
-      throw new NullPointerException("Tabellen a er null");
-
-    if(a.length == 0){
-      return;
-    }
-
-    for(int i = 0; i < a.length; i++){
-      T currentValue = a[i];
-
-      if(currentValue == null)
-        continue;
-
-      if(hode == null){
-        Node<T> firstNode = new Node<T>(currentValue, null, null);
-        hode = new Node<T>(null, null, firstNode);
-        hale = new Node<T>(null, firstNode, null);
-        antall++;
-        endringer++;
-      }else{
-        Node<T> lastNode = hale.forrige;
-        lastNode.neste = new Node<T>(currentValue, lastNode, null);
-        hale.forrige = lastNode.neste;
-        antall++;
-        endringer++;
-      }
-
-    }
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
+
   // subliste
   public Liste<T> subliste(int fra, int til)
   {
@@ -90,39 +61,19 @@ public class DobbeltLenketListe<T> implements Liste<T>
   @Override
   public int antall()
   {
-    return antall;
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
 
   @Override
   public boolean tom()
   {
-    if(antall == 0)
-      return true;
-    else
-      return false;
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
+
   @Override
   public boolean leggInn(T verdi)
   {
-    Objects.requireNonNull(verdi);
-
-    Node<T> newNode = new Node<T>(verdi, null, null);
-
-    if(antall == 0){
-      hode = new Node<T>(null, null, newNode);
-      hale = new Node<T>(null, newNode, null);
-    }else{
-      Node<T> lastNode = hale.forrige;
-
-      lastNode.neste = newNode;
-      hale.forrige = newNode;
-    }
-
-    antall++;
-    endringer++;
-
-    return true;
-
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
 
   @Override
@@ -176,46 +127,12 @@ public class DobbeltLenketListe<T> implements Liste<T>
   @Override
   public String toString()
   {
-    if(antall == 0)
-      return "[]";
-
-    StringBuilder strBuilder = new StringBuilder("[");
-    Node<T> currentNode = hode.neste;
-
-    strBuilder.append(currentNode.verdi.toString());
-    currentNode = currentNode.neste;
-
-    for(int i = 1; i < antall; i++){
-      strBuilder.append(", " + currentNode.verdi.toString());
-
-      currentNode = currentNode.neste;
-    }
-
-    strBuilder.append("]");
-
-    return strBuilder.toString();
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
 
   public String omvendtString()
   {
-    if(antall == 0)
-      return "[]";
-
-    StringBuilder strBuilder = new StringBuilder("[");
-    Node<T> currentNode = hale.forrige;
-
-    strBuilder.append(currentNode.verdi.toString());
-    currentNode = currentNode.forrige;
-
-    for(int i = 1; i < antall; i++){
-      strBuilder.append(", " + currentNode.verdi.toString());
-
-      currentNode = currentNode.forrige;
-    }
-
-    strBuilder.append("]");
-
-    return strBuilder.toString();
+    throw new UnsupportedOperationException("Ikke laget ennå!");
   }
 
   public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)
@@ -270,7 +187,6 @@ public class DobbeltLenketListe<T> implements Liste<T>
       throw new UnsupportedOperationException("Ikke laget ennå!");
     }
 
-  } // DobbeltLenketListeIterator  
+  } // DobbeltLenketListeIterator
 
-} // DobbeltLenketListe  
-
+} // DobbeltLenketListe

@@ -75,7 +75,19 @@ public class DobbeltLenketListe<T> implements Liste<T>
   
   public Liste<T> subliste(int fra, int til)
   {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+    fratilKontroll(antall, fra, til);
+
+    DobbeltLenketListe<T> nyListe = new DobbeltLenketListe<>();
+    Node<T> node = finnNode(fra);
+
+    for(int i = fra; i < til; i++) {
+      nyListe.leggInn(node.verdi);
+      node = node.neste;
+    }
+
+    nyListe.endringer = 0;
+
+    return nyListe;
   }
 
   @Override

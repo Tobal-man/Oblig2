@@ -1,8 +1,4 @@
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 public class DobbeltLenketListe<T> implements Liste<T>
 {
@@ -140,16 +136,31 @@ public class DobbeltLenketListe<T> implements Liste<T>
   }
 
   @Override
-  public String toString()
-  {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+  public String toString() {
+    StringJoiner s = new StringJoiner(", ", "[", "]");
+
+    Node<T> node = hode;
+
+    while (node != null) {
+      s.add(node.verdi.toString());
+      node = node.neste;
+    }
+
+    return s.toString();
   }
 
-  public String omvendtString()
-  {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
-  }
+  public String omvendtString() {
+    StringJoiner s = new StringJoiner(", ", "[", "]");
 
+    Node<T> node = hale;
+
+    while (node != null) {
+      s.add(node.verdi.toString());
+      node = node.forrige;
+    }
+
+    return s.toString();
+  }
   public static <T> void sorter(Liste<T> liste, Comparator<? super T> c)
   {
     throw new UnsupportedOperationException("Ikke laget ennå!");

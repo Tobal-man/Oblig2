@@ -28,13 +28,23 @@ public class DobbeltLenketListe<T> implements Liste<T>
   private int antall;            // antall noder i listen
   private int endringer;   // antall endringer i listen
 
-  // hjelpemetode
-  private Node<T> finnNode(int indeks)
-  {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+  private Node<T> finnNode(int indeks) {
+    int k = antall / 2;
+    int i = 0;
+
+    Node<T> node = hode;
+
+    if (indeks <= k)
+      while (i++ != indeks) node = node.neste;
+    else {
+      node = hale;
+      i = antall - 1;
+      while (i-- != indeks) node = node.forrige;
+    }
+
+    return node;
   }
 
-  // konstruktør
   public DobbeltLenketListe()
   {
     hode = hale = null;
@@ -42,7 +52,6 @@ public class DobbeltLenketListe<T> implements Liste<T>
     endringer = 0;
   }
 
-  // konstruktør
   public DobbeltLenketListe(T[] a) {
     Objects.requireNonNull(a, "Tabellen a er null!");
 
@@ -63,8 +72,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 
     hale = node;
   }
-
-  // subliste
+  
   public Liste<T> subliste(int fra, int til)
   {
     throw new UnsupportedOperationException("Ikke laget ennå!");
@@ -108,9 +116,10 @@ public class DobbeltLenketListe<T> implements Liste<T>
   }
 
   @Override
-  public T hent(int indeks)
-  {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+  public T hent(int indeks) {
+    indeksKontroll(indeks, false);
+
+    return finnNode(indeks).verdi;
   }
 
   @Override

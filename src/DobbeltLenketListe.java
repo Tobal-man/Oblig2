@@ -293,7 +293,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
 
   @Override
   public Iterator<T> iterator() {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+    return new DobbeltLenketListeIterator();
   }
 
   public Iterator<T> iterator(int indeks) {
@@ -326,7 +326,18 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public T next()
     {
-      throw new UnsupportedOperationException("Ikke laget ennå!");
+      if(iteratorendringer != endringer)
+        throw new ConcurrentModificationException("Listen har blitt endret!");
+
+      if(!hasNext())
+        throw new NoSuchElementException("Ingen flere elementer i listen!");
+
+      fjernOK = true;
+
+      T verdi = denne.verdi;
+      denne = denne.neste;
+
+      return verdi;
     }
 
     @Override

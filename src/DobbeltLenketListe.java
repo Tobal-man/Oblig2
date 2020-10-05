@@ -176,7 +176,8 @@ public class DobbeltLenketListe<T> implements Liste<T>
   }
 
   @Override
-  public T oppdater(int indeks, T nyverdi) {
+  public T oppdater(int indeks, T nyverdi)
+  {
     indeksKontroll(indeks, false);
     Objects.requireNonNull(nyverdi, "nyverdi er null!");
 
@@ -198,7 +199,33 @@ public class DobbeltLenketListe<T> implements Liste<T>
   @Override
   public T fjern(int indeks)
   {
-    throw new UnsupportedOperationException("Ikke laget ennå!");
+    indeksKontroll(indeks, false);
+
+    Node<T> node = finnNode(indeks);
+    T verdi = node.verdi;
+
+    antall--;
+    endringer++;
+
+    if (indeks == 0) {
+      hode = node.neste;
+
+      if (hode != null) hode.forrige = null;
+      else hale = null;
+
+    } else if (indeks < antall) {
+      node.forrige.neste = node.neste;
+      node.neste.forrige = node.forrige;
+    } else {
+      hale = node.forrige;
+      hale.neste = null;
+    }
+
+    node.neste = null;
+    node.forrige = null;
+    node.verdi = null;
+
+    return verdi;
   }
 
   @Override
